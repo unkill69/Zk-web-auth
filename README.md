@@ -1,8 +1,26 @@
+## Contracts
+
+| contract           | Description                                                                            |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| Account.sol        | zkSync Account Abstraction Wallet                                                      |
+| AccountFactory.sol | Deployer of Account.sol                                                                |
+| WebAuthn.sol       | handles values given by webauthn and produce `message` for validation in EllipticCurve |
+| EllipticCurve.sol  | verify message and signature with publickey. ECDSA256 & p256 curve                     |
+| Paymaster.sol      | sponsor for accounts' meta-transaction                                                 |
+
+## Development
+
 ### setup
 
-`yarn`
+```shell
+git clone https://github.com/unkill69/Zk-web-auth.git
+cd Zk-web-auth
+yarn
+```
 
-### run zksync local chain
+### Run zksync local network
+
+docker should be run first.
 
 ```shell
 git clone https://github.com/matter-labs/local-setup.git
@@ -10,9 +28,9 @@ cd local-setup
 ./start.sh
 ```
 
-### deploy
+### Deployment
 
-create .env file and add the line `NODE_ENV="local"`.
+create .env file and add the line `NODE_ENV="test"`.
 
 then run:
 
@@ -21,11 +39,12 @@ yarn hardhat compile
 yarn hardhat deploy-zksync --script deploy/deploy.ts
 ```
 
-### copy&paste deployed address to frontend/src/scripts/utils/address/ts
+### Preparetion for frontend
+
+copy&paste deployed address to frontend/src/scripts/utils/address/ts
 
 ```shell
-multicall1: "0xA1B809005E589f81dE6EF9F48D67e35606c05fC3",
-multicall2: "0xc0431C32561DabE0c8FD791B52590BbBA413c235",
+webauthn: "0x4B5DF730c2e6b28E17013A1485E5d9",
 factory: "0x996462e0eAf00bF6BF0Ea15F29d715C0eD3906F1",
 paymaster: "0x1A2894885076934dAf5a398Ff216c6d665707bbA",
 ```
